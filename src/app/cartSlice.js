@@ -38,6 +38,11 @@ const cartSlice = createSlice({
       cartSlice.caseReducers.calculateTotoal(state);
       toast.warning("Cart deleted !");
     },
+    removeAllCartItems: (state) => {
+      state.cartItems = [];
+      cartSlice.caseReducers.calculateTotoal(state);
+      toast.warning("All items deleted !");
+    },
     calculateTotoal: (state) => {
       let allPrice = 0;
       let allProducts = 0;
@@ -56,5 +61,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, updateCartItem, removeCartItem } = cartSlice.actions;
+export const { addToCart, updateCartItem, removeCartItem, removeAllCartItems } =
+  cartSlice.actions;
 export default cartSlice.reducer;

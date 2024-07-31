@@ -1,8 +1,14 @@
+// ShoppingCart.js
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateCartItem, removeCartItem } from "../app/cartSlice";
+import {
+  updateCartItem,
+  removeCartItem,
+  removeAllCartItems,
+} from "../app/cartSlice";
 import EditModal from "../components/EditModal";
 import DeleteModal from "../components/DeleteModal";
+import DeleteAllModal from "../components/DeleteAllModal";
 
 const ShoppingCart = () => {
   const { cartItems, totalPrice, totalCars } = useSelector(
@@ -12,6 +18,7 @@ const ShoppingCart = () => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleEdit = (item) => {
@@ -34,9 +41,23 @@ const ShoppingCart = () => {
     setIsDeleteModalOpen(false);
   };
 
+  const handleRemoveAllItems = () => {
+    dispatch(removeAllCartItems());
+    setIsDeleteAllModalOpen(false);
+  };
+
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+        <button
+          onClick={() => setIsDeleteAllModalOpen(true)}
+          className="btn btn-error btn-sm mt-4"
+        >
+          Delete All Items
+        </button>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="col-span-2">
           {cartItems.map((item) => (
@@ -92,6 +113,12 @@ const ShoppingCart = () => {
           item={selectedItem}
           onClose={() => setIsDeleteModalOpen(false)}
           onDelete={handleRemoveItem}
+        />
+      )}
+      {isDeleteAllModalOpen && (
+        <DeleteAllModal
+          onClose={() => setIsDeleteAllModalOpen(false)}
+          onDeleteAll={handleRemoveAllItems}
         />
       )}
     </div>
