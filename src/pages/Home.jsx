@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useCollection } from "../hooks/useCollection";
 import Modal from "../components/Modal";
 
+import { Link } from "react-router-dom";
+
 import { addToCart } from "../app/cartSlice";
 import { useDispatch } from "react-redux";
 
@@ -51,6 +53,12 @@ function Home() {
           </div>
         ))}
       </div>
+      <Link
+        to="/rating"
+        className="link-secondary hover:underline mt-4 block text-center"
+      >
+        See More Models Rating
+      </Link>
       {isModalOpen && selectedCar && (
         <Modal
           car={selectedCar}
