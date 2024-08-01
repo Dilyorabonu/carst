@@ -23,10 +23,13 @@ const EditModal = ({ item, onClose, onSave }) => {
           />
         </div>
         <div className="flex justify-between">
-          <button onClick={onClose} className="px-4 py-2 btn btn-secondary">
+          <button
+            onClick={onClose}
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+          >
             Cancel
           </button>
-          <button onClick={handleSave} className="px-4 py-2 btn btn-primary">
+          <button onClick={handleSave} className="px-4 py-2 btn btn-secondary">
             Save
           </button>
         </div>

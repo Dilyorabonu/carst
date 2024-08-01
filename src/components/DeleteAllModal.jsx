@@ -8,7 +8,10 @@ const DeleteAllModal = ({ onClose, onDeleteAll }) => {
         <h2 className="text-2xl font-bold mb-4">Delete All Items</h2>
         <p>Are you sure you want to delete all items from your cart?</p>
         <div className="flex justify-between mt-4">
-          <button onClick={onClose} className="px-4 py-2 btn btn-secondary">
+          <button
+            onClick={onClose}
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
+          >
             Cancel
           </button>
           <button onClick={onDeleteAll} className="px-4 py-2 btn btn-error">

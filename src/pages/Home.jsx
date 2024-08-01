@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useCollection } from "../hooks/useCollection";
 import Modal from "../components/Modal";
-
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { addToCart } from "../app/cartSlice";
 import { useDispatch } from "react-redux";
 
@@ -12,6 +10,7 @@ function Home() {
   const { data: cars } = useCollection("cars");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);
+  const navigate = useNavigate();
 
   const openModal = (car) => {
     setSelectedCar(car);
@@ -28,8 +27,22 @@ function Home() {
     closeModal();
   };
 
+  const goToRatingPage = () => {
+    const carModels = cars.map((car) => car.model);
+    const carPrices = cars.map((car) => car.price);
+    navigate("/rating", { state: { data: carPrices, categories: carModels } });
+  };
+
   return (
     <div className="container mx-auto p-6">
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={goToRatingPage}
+          className="text-blue-500 hover:underline mt-2 block text-end"
+        >
+          See More Models Rating
+        </button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {cars?.map((car) => (
           <div
@@ -53,12 +66,6 @@ function Home() {
           </div>
         ))}
       </div>
-      <Link
-        to="/rating"
-        className="link-secondary hover:underline mt-4 block text-center"
-      >
-        See More Models Rating
-      </Link>
       {isModalOpen && selectedCar && (
         <Modal
           car={selectedCar}

@@ -1,4 +1,3 @@
-// src/components/BarChart.jsx
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
@@ -6,6 +5,7 @@ const BarChart = ({ data, categories }) => {
   const chartData = {
     series: [
       {
+        name: "Price",
         data,
       },
     ],
@@ -17,7 +17,6 @@ const BarChart = ({ data, categories }) => {
       plotOptions: {
         bar: {
           borderRadius: 4,
-          borderRadiusApplication: "end",
           horizontal: true,
         },
       },

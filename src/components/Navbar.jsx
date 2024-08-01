@@ -134,11 +134,11 @@ function Navbar() {
                     <span className="badge">New</span>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/rating" className="justify-between">
                     Car's rating
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/cart" className="justify-between">
                     Shopping cart
@@ -161,16 +161,16 @@ function Navbar() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-base-100 p-6 rounded-lg shadow-md max-w-md w-full mx-4">
             <h2 className="text-2xl font-bold mb-4">Confirm Logout</h2>
-            <p className="text-white">Are you sure you want to log out?</p>
+            <p>Are you sure you want to log out?</p>
             <div className="flex justify-between mt-4">
-              <button className="px-4 py-2 btn btn-secondary" onClick={logOut}>
-                Yes, Log Out
-              </button>
               <button
                 className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg"
                 onClick={() => setShowLogoutModal(false)}
               >
                 Cancel
+              </button>
+              <button className="px-4 py-2 btn btn-secondary" onClick={logOut}>
+                Yes, Log Out
               </button>
             </div>
           </div>

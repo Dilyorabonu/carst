@@ -88,6 +88,7 @@ const CreateModal = () => {
           <input
             type="number"
             name="year"
+            required
             value={carModel.year}
             onChange={handleChange}
             className="w-full px-4 py-2 input input-bordered"
@@ -99,6 +100,7 @@ const CreateModal = () => {
           <input
             type="number"
             name="price"
+            required
             value={carModel.price}
             onChange={handleChange}
             className="w-full px-4 py-2 input input-bordered"
@@ -110,6 +112,7 @@ const CreateModal = () => {
           <input
             type="text"
             name="imageUrl"
+            required
             value={carModel.imageUrl}
             onChange={handleChange}
             className="w-full px-4 py-2 input input-bordered"

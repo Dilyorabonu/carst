@@ -1,4 +1,3 @@
-// ShoppingCart.js
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,6 +8,7 @@ import {
 import EditModal from "../components/EditModal";
 import DeleteModal from "../components/DeleteModal";
 import DeleteAllModal from "../components/DeleteAllModal";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
   const { cartItems, totalPrice, totalCars } = useSelector(
@@ -48,6 +48,11 @@ const ShoppingCart = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <div className="flex justify-end mb-4">
+        <Link to="/" className="text-blue-500 hover:underline">
+          Back to home
+        </Link>
+      </div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
         <button
@@ -57,7 +62,6 @@ const ShoppingCart = () => {
           Delete All Items
         </button>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="col-span-2">
           {cartItems.map((item) => (
@@ -68,12 +72,12 @@ const ShoppingCart = () => {
               <div className="flex items-center">
                 <img
                   src={item.imageUrl}
-                  alt={item.name}
+                  alt={item.model}
                   className="w-16 h-16 object-cover mr-4"
                 />
                 <div>
-                  <h3 className="font-bold">{item.name}</h3>
-                  <p>{item.price}</p>
+                  <h3 className="font-bold">{item.model}</h3>
+                  <p>Price: ${item.price}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -97,7 +101,7 @@ const ShoppingCart = () => {
         <div className="bg-base-100 p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-bold mb-4">Order Summary</h2>
           <p className="mb-2">Items: {totalCars}</p>
-          <p className="mb-2">Total: $ {totalPrice}</p>
+          <p className="mb-2">Total: ${totalPrice}</p>
           <button className="btn btn-secondary w-full">Check out</button>
         </div>
       </div>
